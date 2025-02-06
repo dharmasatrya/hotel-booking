@@ -26,7 +26,8 @@ func NewRouter() *echo.Echo {
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	user := e.Group("/users")
-	user.POST("/register/supporters", userController.RegisterUser)
+	user.POST("/register", userController.RegisterUser)
+	user.POST("/login", userController.LoginUser)
 
 	return e
 }
