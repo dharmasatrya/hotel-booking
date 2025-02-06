@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package userpb;
+
+option go_package = "./proto";
+
+import "google/protobuf/empty.proto";
+
+service UserService {
+    rpc GetRoomById (GetRoomByIdRequest) returns (Room);
+    rpc GetAvailableRooms (google.protobuf.Empty) returns (GetAvailableRoomsResponse);
+    rpc CreateRoom (CreateRoomRequest) returns (Room);
+    rpc EditRoomById (EditRoomByIdRequest) returns (Room);
+    rpc DeleteRoomById (DeleteRoomByIdRequest) returns (Room);
+}
+
+
+message GetRoomByIdRequest{
+    uint32 roomId = 1;
+}
+
+message Room {
+    uint32 id  = 1;
+    string name = 2;
+    uint32 capacity = 3;
+    uint32 price = 4;
+    bool isAvailable = 5;
+}
+
+message GetAvailableRoomsResponse {
+    repeated Room rooms = 1;
+}
+
+message CreateRoomRequest {
+    string name = 1;
+    uint32 capacity = 2;
+    uint32 price = 3;
+}
+
+message EditRoomByIdRequest {
+    uint32 id  = 1;
+    string name = 2;
+    uint32 capacity = 3;
+    uint32 price = 4;
+    bool isAvailable = 5;
+}
+
+message DeleteRoomByIdRequest {
+    uint32 roomId = 1;
+}
+
+
+
